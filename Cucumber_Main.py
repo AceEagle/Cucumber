@@ -1,7 +1,22 @@
-import tensorflow as tf
-from tensorflow import keras
+import random
 import numpy as np
-import matplotlib.pyplot as plt
+from pyqtgraph import PlotWidget, plot
+from PyQt5 import QtWidgets, QtCore
+import pyqtgraph as pg
+import sys
+import os
 
-fashion_mnist = keras.datasets.fashion_mnist
-(train_images, train_labels), (test_images, test_labels) = fashion_mnist.load_data()
+
+class Create100graphs(QtWidgets.QMainWindow):
+
+        def __init__(self, *args, **kwargs):
+            super(Create100graphs, self).__init__(*args, **kwargs)
+
+            self.graphWidget = pg.PlotWidget()
+            self.setCentralWidget(self.graphWidget)
+
+            self.colors = np.array('b', 'g', 'r', 'c', 'm', 'y', 'k', 'w')
+            self.letters = np.array(
+                'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k',
+                'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v',
+                'w', 'x', 'y', 'z')
