@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/Cucumber.iml" filepath="$PROJECT_DIR$/.idea/Cucumber.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../virus-propagation-simulator/.idea/Virus Propagation Simulator.iml" filepath="$PROJECT_DIR$/../virus-propagation-simulator/.idea/Virus Propagation Simulator.iml" />
     </modules>
   </component>
 </project>

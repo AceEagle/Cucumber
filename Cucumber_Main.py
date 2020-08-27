@@ -5,18 +5,15 @@ from PyQt5 import QtWidgets, QtCore
 import pyqtgraph as pg
 import sys
 import os
+from pint import UnitRegistry
 
+class Graph_Gen(QtWidgets.QMainWindow):
+    def __init__(self, *args, **kwargs):
+        super(Graph_Gen, self).__init__(*args, **kwargs)
 
-class Create100graphs(QtWidgets.QMainWindow):
+        self.graphWidget = pg.PlotWidget()
+        self.setCentralWidget(self.graphWidget)
 
-        def __init__(self, *args, **kwargs):
-            super(Create100graphs, self).__init__(*args, **kwargs)
+        ureg = UnitRegistry()
 
-            self.graphWidget = pg.PlotWidget()
-            self.setCentralWidget(self.graphWidget)
-
-            self.colors = np.array('b', 'g', 'r', 'c', 'm', 'y', 'k', 'w')
-            self.letters = np.array(
-                'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k',
-                'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v',
-                'w', 'x', 'y', 'z')
+        self.BackgroundColors = ['b', 'g', 'r', 'c', 'm', 'y', 'k', 'w']
