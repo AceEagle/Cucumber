@@ -45,5 +45,6 @@ class GraphGen:
             self.graphWidget.clear()
 
 
-a = GraphGen()
-a.graph_gene(100)
+if __name__ == '__main__':
+    a = GraphGen()
+    a.graph_gene(100)
