@@ -3,7 +3,6 @@ from lorem_text import lorem
 import numpy as np
 import pyqtgraph as pg
 import pyqtgraph.exporters
-import pdb
 
 
 class GraphGen:
@@ -24,7 +23,6 @@ class GraphGen:
         self.plot = None
         self.styles = None
         self.SavePlot = None
-        pdb.set_trace()
 
     def graph_gene(self, nb: int):
         for i in range(nb):
