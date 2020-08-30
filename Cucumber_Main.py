@@ -57,7 +57,7 @@ class GraphGen:
                 x, y = zip(*L)
                 self.ax.plot(x, y, color=random.choice(self.colors))
 
-            plt.savefig(fname='Graph_{}'.format(name), dpi=random.randrange(20, 300))
+            plt.savefig(fname='Graphs\Graph_{}'.format(name), dpi=random.randrange(20, 300))
             self.ax.clear()
 
     def normal_choice(self, lst, mean=None, stddev=None):
