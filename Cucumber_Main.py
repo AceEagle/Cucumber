@@ -5,7 +5,7 @@ import operator
 from lorem_text import lorem
 
 
-class GraphGen():
+class GraphGen:
     def __init__(self, *args, **kwargs):
         super(GraphGen, self).__init__(*args, **kwargs)
 
@@ -31,8 +31,9 @@ class GraphGen():
 
     def graph_gene(self, nb: int):
         self.amountOfGraph = nb
-
+        name = 0
         for i in range(self.amountOfGraph):
+            name += 1
             self.ax.grid(b=random.choice(self.trueFalse), which=random.choice(self.gridWhich),
                          axis=random.choice(self.gridAxis), color=random.choice(self.colors),
                          linestyle=random.choice(self.lineStyles), linewidth=random.choice(self.lineWidth))
@@ -41,16 +42,39 @@ class GraphGen():
             self.ax.set_ylabel(random.choice(self.units))
 
             for j in range(random.randrange(1, self.maxPlotAmount)):
+                liste100 = range(0, 101)
+                polyNb = random.randrange(2, 100)
+                liste = [0] * polyNb
+                for k in liste:
+                    liste[k] += self.normal_choice(liste100)
+                polyNom = np.poly1d(liste)
+                print(polyNom)
                 x = random.sample(list(self.Nb100), 100)
-                y = random.sample(list(self.Nb100), 100)
+                y = [0] * 100
+                for l in range(100):
+                    y[l] += np.polyval(polyNom, x[l])
                 L = sorted(zip(x, y), key=operator.itemgetter(0))
                 x, y = zip(*L)
                 self.ax.plot(x, y, color=random.choice(self.colors))
 
-            plt.show()
+            plt.savefig(fname='Graph_{}'.format(name), dpi=random.randrange(20, 300))
             self.ax.clear()
+
+    def normal_choice(self, lst, mean=None, stddev=None):
+        if mean is None:
+            # if mean is not specified, use center of list
+            mean = (len(lst) - 1) / 2
+
+        if stddev is None:
+            # if stddev is not specified, let list be -3 .. +3 standard deviations
+            stddev = len(lst) / 6
+
+        while True:
+            index = int(random.normalvariate(mean, 2) + 0.5)
+            if 0 <= index < len(lst):
+                return lst[index]
 
 
 if __name__ == '__main__':
     a = GraphGen()
-    a.graph_gene(4)
+    a.graph_gene(20)
