@@ -1,16 +1,14 @@
 import random
-from lorem_text import lorem
 import numpy as np
-import pyqtgraph as pg
-import pyqtgraph.exporters
+from matplotlib import pyplot as plt
+from lorem_text import lorem
 
 
-class GraphGen:
+class GraphGen():
     def __init__(self, *args, **kwargs):
         super(GraphGen, self).__init__(*args, **kwargs)
 
-        self.graphWidget = pg.PlotWidget()
-
+        self.figure, self.ax = plt.subplot()
         self.units = ['meters (m)', 'seconds (s)', 'ampere (A)', 'candela (cd)',
                       'gram (g)', 'mole (mol)', 'kelvin (K)', 'radian (rad)', 'bit', 'count'
                       ]
@@ -25,11 +23,11 @@ class GraphGen:
         self.SavePlot = None
 
     def graph_gene(self, nb: int):
+        self.ax.set_facecolor(random.choice())
+        self.ax.set_xlabel(random.choice(self.units))
+        self.ax.set_yabel(random.choice(self.units))
         for i in range(nb):
-            self.graphWidget.setBackground(random.choice(self.BackgroundColors))
-            self.styles = {'color': random.choice(self.BackgroundColors), 'font-size': random.choice(self.FontSizes)}
-            self.graphWidget.setLabel('left', random.choice(self.units), **self.styles)
-            self.graphWidget.setLabel('bottom', random.choice(self.units), **self.styles)
+
             self.graphWidget.showGrid(x=random.choice(self.TrueFalse), y=random.choice(self.TrueFalse))
 
             for j in range(random.randrange(1, 4)):
@@ -37,9 +35,9 @@ class GraphGen:
                           random.choice(self.BackgroundColors))
 
             pen = pg.mkPen(color=random.choice(self.BackgroundColors), width=random.randrange(5, 15))
-            self.SavePlot = self.graphWidget.plot(name='PlotName', pen=pen)
+            self.SavePlot = pg.plot(name='PlotName', pen=pen)
             exporter = pg.exporters.ImageExporter(self.SavePlot)
-            exporter.export(lorem.words(self.words))
+            exporter.export('image_' + str(i) + '.png')
             self.graphWidget.clear()
 
 
