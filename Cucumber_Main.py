@@ -13,7 +13,7 @@ class GraphGen:
         self.units = ['meters (m)', 'seconds (s)', 'ampere (A)', 'candela (cd)',
                       'gram (g)', 'mole (mol)', 'kelvin (K)', 'radian (rad)', 'bit', 'count'
                       ]
-        self.colors = ['b', 'g', 'r', 'c', 'm', 'y', 'k', 'w']
+        self.colors = ['b', 'g', 'r', 'c', 'm', 'y', 'k']
         self.lineStyles = ['-', '--', '-.', ':', 'None', ' ', '', 'solid', 'dashed', 'dashdot', 'dotted']
         self.fontSizes = ['15px', '16px', '17px', '18px', '19px', '20px']
         self.lineWidth = [0.2, 0.5, 1, 2, 3, 4, 5 ]
@@ -42,13 +42,15 @@ class GraphGen:
             self.ax.set_ylabel(random.choice(self.units))
 
             for j in range(random.randrange(1, self.maxPlotAmount)):
-                liste100 = list(np.linspace(-5, 5, 100))
-                polyNb = random.randrange(2, 100)
+                liste100 = list(np.linspace(-10, 10, 21))
+                liste100.remove(0)
+                polyNb = random.randrange(1, 6)
                 liste = [0] * polyNb
-                for k in liste:
-                    liste[k] += self.normal_choice(liste100)
+                for k, m in enumerate(liste):
+                    liste[k] = random.choice(liste100)
+                #print(liste)
                 polyNom = np.poly1d(liste)
-                print(polyNom)
+                #print(polyNom)
                 x = random.sample(list(self.Nb100), 100)
                 y = [0] * 100
                 for l in range(100):
