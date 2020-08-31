@@ -22,7 +22,7 @@ class GraphGen:
         self.gridWhich = ['major', 'minor', "both"]
         self.maxPlotAmount = 3
         self.amountOfGraph = 10
-        self.Nb100 = np.linspace(-1000, 1000, 2000)
+        self.Nb100 = np.linspace(-10, 10, 100)
 
         self.words = 1
         self.plot = None
@@ -42,7 +42,7 @@ class GraphGen:
             self.ax.set_ylabel(random.choice(self.units))
 
             for j in range(random.randrange(1, self.maxPlotAmount)):
-                liste100 = range(0, 101)
+                liste100 = list(np.linspace(-5, 5, 100))
                 polyNb = random.randrange(2, 100)
                 liste = [0] * polyNb
                 for k in liste:
