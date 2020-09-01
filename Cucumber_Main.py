@@ -22,7 +22,7 @@ class GraphGen:
         self.gridWhich = ['major', 'minor', "both"]
         self.maxPlotAmount = 3
         self.amountOfGraph = 10
-        self.Nb100 = np.linspace(-10, 10, 100)
+        self.Nb100 = np.linspace(-2, 2, 100)
 
         self.words = 1
         self.plot = None
@@ -43,14 +43,14 @@ class GraphGen:
 
             for j in range(random.randrange(1, self.maxPlotAmount)):
                 liste100 = list(np.linspace(-10, 10, 21))
-                liste100.remove(0)
-                polyNb = random.randrange(1, 6)
+                liste100.pop(0)
+                polyNb = random.randrange(2, 9)
                 liste = [0] * polyNb
                 for k, m in enumerate(liste):
                     liste[k] = random.choice(liste100)
-                #print(liste)
+                # print(liste)
                 polyNom = np.poly1d(liste)
-                #print(polyNom)
+                print(polyNom)
                 x = random.sample(list(self.Nb100), 100)
                 y = [0] * 100
                 for l in range(100):
@@ -75,6 +75,9 @@ class GraphGen:
             index = int(random.normalvariate(mean, 2) + 0.5)
             if 0 <= index < len(lst):
                 return lst[index]
+
+    def functions(self):
+        constant = random
 
 
 if __name__ == '__main__':
