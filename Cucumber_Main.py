@@ -77,7 +77,9 @@ class GraphGen:
                 return lst[index]
 
     def functions(self):
-        constant = random
+        self.constant = random.randrange(-1000, 1000)
+        self.linear =
+
 
 
 if __name__ == '__main__':
