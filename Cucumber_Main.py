@@ -25,7 +25,8 @@ class GraphGen:
         self.plot = None
         self.styles = None
         self.SavePlot = None
-        self.coefficientRange = (self.coefficientRange)
+        self.coefficientRange = (-20, 20)
+        self.coefficientRangePositive = (2, 40)
 
 
     def graph_gene(self, x, y):
@@ -161,12 +162,12 @@ class GraphGen:
         self.graph_gene(x, y)
 
     def squareRoot(self):
-        a = random.randrange(self.coefficientRange)
+        a = random.randrange(*self.coefficientRange)
         while a == 0:
-            a = random.randrange(self.coefficientRange)
-        b = random.randrange(self.coefficientRange)
+            a = random.randrange(*self.coefficientRange)
+        b = random.randrange(*self.coefficientRange)
         while b == 0:
-            b = random.randrange(self.coefficientRange)
+            b = random.randrange(*self.coefficientRange)
         x = random.sample(list(self.Nb100), 100)
         y = [0] * 100
         for l in range(100):
@@ -176,9 +177,9 @@ class GraphGen:
         self.graph_gene(x, y)
 
     def cubic(self):
-        a = random.randrange(self.coefficientRange)
+        a = random.randrange(*self.coefficientRange)
         while a ==0:
-            a = random.randrange(self.coefficientRange)
+            a = random.randrange(*self.coefficientRange)
         x = random.sample(list(self.Nb100), 100)
         y = [0] * 100
         for l in range(100):
@@ -186,4 +187,17 @@ class GraphGen:
         L = sorted(zip(x, y), key=operator.itemgetter(0))
         x, y = zip(*L)
         self.graph_gene(x, y)
+
+    def expo(self):
+        a = random.randrange(*self.coefficientRange)
+        b = random.randrange(*self.coefficientRange)
+        c = random.randrange(*self.coefficientRangePositive)
+        x = random.sample(list(self.Nb100), 100)
+        y = [0] * 100
+        for l in range(100):
+            y[l] += a * (c ^ (b * x[l]))
+        L = sorted(zip(x, y), key=operator.itemgetter(0))
+        x, y = zip(*L)
+        self.graph_gene(x, y)
+
 
