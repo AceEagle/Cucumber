@@ -28,6 +28,9 @@ class GraphGen:
         self.coefficientRange = (-20, 20)
         self.coefficientRangePositive = (2, 40)
         self.Nb100 = np.linspace(random.randrange(-100, 0), random.randrange(0, 100), 100)
+        self.FunctionsListe = [self.constant, self.linear, self.quadratic, self.cubic,
+                               self.quartic, self.quintic, self.sextic, self.rational,
+                               self.square_root, self.cube_root, self.expo]
 
     def graph_gene(self, x, y):
         name = lorem.words(1)
@@ -42,6 +45,13 @@ class GraphGen:
 
         plt.savefig(fname='Graphs\Graph_{}'.format(name), dpi=random.randrange(100, 300))
         self.ax.clear()
+
+    def add_functions(self):
+        plotx = self.Nb100
+        nbparties = random.randrange(1, 11)
+        for i in range(nbparties):
+            x, y = random.choice(self.FunctionsListe)()
+            plotx =
 
     def constant(self):
         y = [random.randrange(-1000, 1000)] * 100
