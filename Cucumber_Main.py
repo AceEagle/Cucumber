@@ -25,7 +25,8 @@ class GraphGen:
         self.plot = None
         self.styles = None
         self.SavePlot = None
-        self.coefficientRange = (-20, 20)
+        self.coefficientRange = (self.coefficientRange)
+
 
     def graph_gene(self, x, y):
         name = lorem.words(1)
@@ -160,16 +161,28 @@ class GraphGen:
         self.graph_gene(x, y)
 
     def squareRoot(self):
-        a = random.randrange(-20, 20)
+        a = random.randrange(self.coefficientRange)
         while a == 0:
-            a = random.randrange(-20, 20)
-        b = random.randrange(-20, 20)
+            a = random.randrange(self.coefficientRange)
+        b = random.randrange(self.coefficientRange)
         while b == 0:
-            b = random.randrange(-20, 20)
+            b = random.randrange(self.coefficientRange)
         x = random.sample(list(self.Nb100), 100)
         y = [0] * 100
         for l in range(100):
             y[l] += a * math.sqrt(b * x[l])
+        L = sorted(zip(x, y), key=operator.itemgetter(0))
+        x, y = zip(*L)
+        self.graph_gene(x, y)
+
+    def cubic(self):
+        a = random.randrange(self.coefficientRange)
+        while a ==0:
+            a = random.randrange(self.coefficientRange)
+        x = random.sample(list(self.Nb100), 100)
+        y = [0] * 100
+        for l in range(100):
+            y[l] += a * (x[l] ^ 3)
         L = sorted(zip(x, y), key=operator.itemgetter(0))
         x, y = zip(*L)
         self.graph_gene(x, y)
