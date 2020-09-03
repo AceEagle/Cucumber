@@ -20,47 +20,24 @@ class GraphGen:
         self.trueFalse = [True, False]
         self.gridAxis = ['both', 'x', 'y']
         self.gridWhich = ['major', 'minor', "both"]
-        self.maxPlotAmount = 3
-        self.amountOfGraph = 10
-        self.Nb100 = np.linspace(-2, 2, 100)
 
-        self.words = 1
         self.plot = None
         self.styles = None
         self.SavePlot = None
 
-    def graph_gene(self, nb: int):
-        self.amountOfGraph = nb
-        name = 0
-        for i in range(self.amountOfGraph):
-            name += 1
-            self.ax.grid(b=random.choice(self.trueFalse), which=random.choice(self.gridWhich),
-                         axis=random.choice(self.gridAxis), color=random.choice(self.colors),
-                         linestyle=random.choice(self.lineStyles), linewidth=random.choice(self.lineWidth))
-            # self.ax.set_facecolor(random.choice(self.colors))
-            self.ax.set_xlabel(random.choice(self.units))
-            self.ax.set_ylabel(random.choice(self.units))
+    def graph_gene(self, x, y):
+        name = lorem.words(1)
+        self.ax.grid(b=random.choice(self.trueFalse), which=random.choice(self.gridWhich),
+        axis=random.choice(self.gridAxis), color=random.choice(self.colors),
+        linestyle=random.choice(self.lineStyles), linewidth=random.choice(self.lineWidth))
+        # self.ax.set_facecolor(random.choice(self.colors))
+        self.ax.set_xlabel(random.choice(self.units))
+        self.ax.set_ylabel(random.choice(self.units))
 
-            for j in range(random.randrange(1, self.maxPlotAmount)):
-                liste100 = list(np.linspace(-10, 10, 21))
-                liste100.pop(0)
-                polyNb = random.randrange(2, 9)
-                liste = [0] * polyNb
-                for k, m in enumerate(liste):
-                    liste[k] = random.choice(liste100)
-                # print(liste)
-                polyNom = np.poly1d(liste)
-                print(polyNom)
-                x = random.sample(list(self.Nb100), 100)
-                y = [0] * 100
-                for l in range(100):
-                    y[l] += np.polyval(polyNom, x[l])
-                L = sorted(zip(x, y), key=operator.itemgetter(0))
-                x, y = zip(*L)
-                self.ax.plot(x, y, color=random.choice(self.colors))
+        self.ax.plot(x, y, color=random.choice(self.colors))
 
-            plt.savefig(fname='Graphs\Graph_{}'.format(name), dpi=random.randrange(20, 300))
-            self.ax.clear()
+        plt.savefig(fname='Graphs\Graph_{}'.format(name), dpi=random.randrange(100, 300))
+        self.ax.clear()
 
     def normal_choice(self, lst, mean=None, stddev=None):
         if mean is None:
@@ -76,10 +53,38 @@ class GraphGen:
             if 0 <= index < len(lst):
                 return lst[index]
 
-    def functions(self):
-        self.constant = random.randrange(-1000, 1000)
-        self.linear =
+    def constant(self):
+        y = [random.randrange(-1000, 1000)] * 100
+        x = random.sample(list(self.Nb100), 100)
+        L = sorted(zip(x, y), key=operator.itemgetter(0))
+        x, y = zip(*L)
+        self.graph_gene(x, y)
 
+    def linear(self):
+        listeLinear = [0] * 2
+        for k, m in enumerate(listeLinear):
+            listeLinear[k] = random.randrange(-20, 20)
+        polyLinear = np.poly1d(listeLinear)
+        x = random.sample(list(self.Nb100), 100)
+        y = [0] * 100
+        for l in range(100):
+            y[l] += np.polyval(polyLinear, x[l])
+        L = sorted(zip(x, y), key=operator.itemgetter(0))
+        x, y = zip(*L)
+        self.graph_gene(x, y)
+
+    def quadratic(self):
+        listeLinear = [0] * 3
+        for k, m in enumerate(listeLinear):
+            listeLinear[k] = random.randrange(-20, 20)
+        polyLinear = np.poly1d(listeLinear)
+        x = random.sample(list(self.Nb100), 100)
+        y = [0] * 100
+        for l in range(100):
+            y[l] += np.polyval(polyLinear, x[l])
+        L = sorted(zip(x, y), key=operator.itemgetter(0))
+        x, y = zip(*L)
+        self.graph_gene(x, y)
 
 
 if __name__ == '__main__':
