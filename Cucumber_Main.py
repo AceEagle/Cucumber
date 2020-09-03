@@ -142,4 +142,35 @@ class GraphGen:
         x, y = zip(*L)
         self.graph_gene(x, y)
 
+    def rational(self):
+        listeRational = [0] * 7
+        for k, m in enumerate(listeRational):
+            listeRational[k] = random.randrange(*self.coefficientRange)
+        listeRational2 = [0] * 7
+        for k, m in enumerate(listeRational2):
+            listeRational2[k] = random.randrange(*self.coefficientRange)
+        polyRational = np.poly1d(listeRational/listeRational2)
+        x = random.sample(list(self.Nb100), 100)
+        y = [0] * 100
+        for l in range(100):
+            y[l] += np.polyval(polyRational, x[l])
+        L = sorted(zip(x, y), key=operator.itemgetter(0))
+        x, y = zip(*L)
+        self.graph_gene(x, y)
+
+    def squareRoot(self):
+        listeRational = [0] * 7
+        for k, m in enumerate(listeRational):
+            listeRational[k] = random.randrange(*self.coefficientRange)
+        listeRational2 = [0] * 7
+        for k, m in enumerate(listeRational2):
+            listeRational2[k] = random.randrange(*self.coefficientRange)
+        polyRational = np.poly1d(listeRational/listeRational2)
+        x = random.sample(list(self.Nb100), 100)
+        y = [0] * 100
+        for l in range(100):
+            y[l] += np.polyval(polyRational, x[l])
+        L = sorted(zip(x, y), key=operator.itemgetter(0))
+        x, y = zip(*L)
+        self.graph_gene(x, y)
 
