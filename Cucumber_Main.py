@@ -47,17 +47,29 @@ class GraphGen:
         self.ax.clear()
 
     def add_functions(self):
+        listex = []
+        listey = []
         plotx = self.Nb100
         nbparties = random.randrange(1, 11)
+        n = 100 / nbparties
         for i in range(nbparties):
             x, y = random.choice(self.FunctionsListe)()
-            plotx =
+            dividedx = self.divide_chunks(x, n)
+            dividedy = self.divide_chunks(x, n)
+            listex.append(dividedx[i])
+            listey.append(dividedy[i])
+
+    @staticmethod
+    def divide_chunks(l, n):
+        for i in range(0, len(l), n):
+            yield l[i:i + n]
 
     def constant(self):
         y = [random.randrange(-1000, 1000)] * 100
         x = random.sample(list(self.Nb100), 100)
         w = sorted(zip(x, y), key=operator.itemgetter(0))
         x, y = zip(*w)
+        print(x)
         return x, y
 
     def linear(self):
