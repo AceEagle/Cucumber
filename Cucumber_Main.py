@@ -24,6 +24,7 @@ class GraphGen:
         self.plot = None
         self.styles = None
         self.SavePlot = None
+        self.coefficientRange = (-20, 20)
 
     def graph_gene(self, x, y):
         name = lorem.words(1)
@@ -63,7 +64,7 @@ class GraphGen:
     def linear(self):
         listeLinear = [0] * 2
         for k, m in enumerate(listeLinear):
-            listeLinear[k] = random.randrange(-20, 20)
+            listeLinear[k] = random.randrange(*self.coefficientRange)
         polyLinear = np.poly1d(listeLinear)
         x = random.sample(list(self.Nb100), 100)
         y = [0] * 100
@@ -74,19 +75,71 @@ class GraphGen:
         self.graph_gene(x, y)
 
     def quadratic(self):
-        listeLinear = [0] * 3
-        for k, m in enumerate(listeLinear):
-            listeLinear[k] = random.randrange(-20, 20)
-        polyLinear = np.poly1d(listeLinear)
+        listeQuadratic = [0] * 3
+        for k, m in enumerate(listeQuadratic):
+            listeQuadratic[k] = random.randrange(*self.coefficientRange)
+            while listeQuadratic[0] == 0:
+                listeQuadratic[0] = random.randrange(*self.coefficientRange)
+
+        polyQuadratic = np.poly1d(listeQuadratic)
         x = random.sample(list(self.Nb100), 100)
         y = [0] * 100
         for l in range(100):
-            y[l] += np.polyval(polyLinear, x[l])
+            y[l] += np.polyval(polyQuadratic, x[l])
+        L = sorted(zip(x, y), key=operator.itemgetter(0))
+        x, y = zip(*L)
+        self.graph_gene(x, y)
+
+    def cubic(self):
+        listeCubic = [0] * 4
+        for k, m in enumerate(listeCubic):
+            listeCubic[k] = random.randrange(*self.coefficientRange)
+        polyCubic = np.poly1d(listeCubic)
+        x = random.sample(list(self.Nb100), 100)
+        y = [0] * 100
+        for l in range(100):
+            y[l] += np.polyval(polyCubic, x[l])
+        L = sorted(zip(x, y), key=operator.itemgetter(0))
+        x, y = zip(*L)
+        self.graph_gene(x, y)
+
+    def quartic(self):
+        listeQuartic = [0] * 5
+        for k, m in enumerate(listeQuartic):
+            listeQuartic[k] = random.randrange(*self.coefficientRange)
+        polyQuartic = np.poly1d(listeQuartic)
+        x = random.sample(list(self.Nb100), 100)
+        y = [0] * 100
+        for l in range(100):
+            y[l] += np.polyval(polyQuartic, x[l])
+        L = sorted(zip(x, y), key=operator.itemgetter(0))
+        x, y = zip(*L)
+        self.graph_gene(x, y)
+        
+    def quintic(self):
+        listeQuintic = [0] * 6
+        for k, m in enumerate(listeQuintic):
+            listeQuintic[k] = random.randrange(*self.coefficientRange)
+        polyQuintic = np.poly1d(listeQuintic)
+        x = random.sample(list(self.Nb100), 100)
+        y = [0] * 100
+        for l in range(100):
+            y[l] += np.polyval(polyQuintic, x[l])
+        L = sorted(zip(x, y), key=operator.itemgetter(0))
+        x, y = zip(*L)
+        self.graph_gene(x, y)
+
+    def sextic(self):
+        listeSextic = [0] * 7
+        for k, m in enumerate(listeSextic):
+            listeSextic[k] = random.randrange(*self.coefficientRange)
+        polySextic = np.poly1d(listeSextic)
+        x = random.sample(list(self.Nb100), 100)
+        y = [0] * 100
+        for l in range(100):
+            y[l] += np.polyval(polySextic, x[l])
         L = sorted(zip(x, y), key=operator.itemgetter(0))
         x, y = zip(*L)
         self.graph_gene(x, y)
 
 
-if __name__ == '__main__':
-    a = GraphGen()
-    a.graph_gene(20)
