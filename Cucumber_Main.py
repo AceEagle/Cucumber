@@ -22,18 +22,24 @@ class GraphGen:
         self.gridAxis = ['both', 'x', 'y']
         self.gridWhich = ['major', 'minor', "both"]
 
+        self.dataRange = [-100, 100]
+        self.nbData = 100
         self.plot = None
         self.styles = None
         self.SavePlot = None
         self.coefficientRange = (-20, 20)
         self.coefficientRangePositive = (2, 40)
-        self.Nb100 = np.linspace(random.randrange(-100, 0), random.randrange(0, 100), 100)
+        self.Nb100 = np.linspace(self.dataRange[0], self.dataRange[1], self.nbData)
         self.FunctionsListe = [self.constant, self.linear, self.quadratic, self.cubic,
                                self.quartic, self.quintic, self.sextic, self.rational,
                                self.square_root, self.cube_root, self.expo]
 
+    def randomize_data_range(self):
+        pass
+
     def graph_gene(self, x, y):
         name = lorem.words(1)
+        x, y = self.add_functions()
         self.ax.grid(b=random.choice(self.trueFalse), which=random.choice(self.gridWhich),
                      axis=random.choice(self.gridAxis), color=random.choice(self.colors),
                      linestyle=random.choice(self.lineStyles), linewidth=random.choice(self.lineWidth))
@@ -58,6 +64,8 @@ class GraphGen:
             dividedy = self.divide_chunks(x, n)
             listex.append(dividedx[i])
             listey.append(dividedy[i])
+        return listex, listey
+
 
     @staticmethod
     def divide_chunks(l, n):
@@ -68,9 +76,8 @@ class GraphGen:
         y = [random.randrange(-1000, 1000)] * 100
         x = random.sample(list(self.Nb100), 100)
         w = sorted(zip(x, y), key=operator.itemgetter(0))
-        x, y = zip(*w)
-        print(x)
-        return x, y
+        x, y = list(zip(*w))
+        return list(x), list(y)
 
     def linear(self):
         listeLinear = [0] * 2
