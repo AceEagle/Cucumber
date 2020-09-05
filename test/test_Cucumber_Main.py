@@ -27,7 +27,6 @@ class TestGraphGen(TestCase):
                 pass
         self.assertEqual(100, nb)
 
-
     def test_linear(self):
         self.fail()
 

@@ -37,7 +37,7 @@ class GraphGen:
     def randomize_data_range(self):
         pass
 
-    def graph_gene(self, x, y):
+    def graph_gene(self):
         name = lorem.words(1)
         x, y = self.add_functions()
         self.ax.grid(b=random.choice(self.trueFalse), which=random.choice(self.gridWhich),
@@ -55,17 +55,16 @@ class GraphGen:
     def add_functions(self):
         listex = []
         listey = []
-        plotx = self.Nb100
         nbparties = random.randrange(1, 11)
         n = 100 / nbparties
         for i in range(nbparties):
             x, y = random.choice(self.FunctionsListe)()
             dividedx = self.divide_chunks(x, n)
             dividedy = self.divide_chunks(x, n)
+            print(dividedy)
             listex.append(dividedx[i])
             listey.append(dividedy[i])
         return listex, listey
-
 
     @staticmethod
     def divide_chunks(l, n):
@@ -198,7 +197,7 @@ class GraphGen:
         x = random.sample(list(self.Nb100), 100)
         y = [0] * 100
         for l in range(100):
-            y[l] += a * (x[l] ^ 3)
+            y[l] += a * (x[l] ** 3)
         w = sorted(zip(x, y), key=operator.itemgetter(0))
         x, y = zip(*w)
         return x, y
@@ -214,3 +213,7 @@ class GraphGen:
         w = sorted(zip(x, y), key=operator.itemgetter(0))
         x, y = zip(*w)
         return x, y
+
+
+a = GraphGen()
+a.add_functions()
