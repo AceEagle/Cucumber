@@ -56,14 +56,64 @@ class GraphGen:
         listex = []
         listey = []
         nbparties = random.randrange(1, 11)
-        n = 100 / nbparties
+        n = int(100 / nbparties)
+        dividedx = []
+        dividedy = []
         for i in range(nbparties):
-            x, y = random.choice(self.FunctionsListe)()
-            dividedx = self.divide_chunks(x, n)
-            dividedy = self.divide_chunks(x, n)
-            print(dividedy)
-            listex.append(dividedx[i])
-            listey.append(dividedy[i])
+            badx, bady = random.choice(self.FunctionsListe)()
+            x = list(badx)
+            y = list(bady)
+            print(y)
+            if i == 0:
+                for j in x[0:n]:
+                    dividedx += j
+                for k in y[0:n]:
+                    dividedy += k
+            elif i == 1:
+                for jj in x[n:n*2]:
+                    dividedx += jj
+                for kk in y[n:n*2]:
+                    dividedy += kk
+            elif i == 2:
+                for jjj in x[n*2:n*3]:
+                    dividedx += jjj
+                for kkk in y[n*2:n*3]:
+                    dividedy += kkk
+            elif i == 3:
+                for jjjj in x[n*3:n*4]:
+                    dividedx += jjjj
+                for kkkk in y[n*3:n*4]:
+                    dividedy += kkkk
+            elif i == 4:
+                for jjjjj in x[n*4:n*5]:
+                    dividedx += jjjjj
+                for kkkkk in y[n*4:n*5]:
+                    dividedy += kkkkk
+            elif i == 5:
+                for jjjjjj in x[n*5:n*6]:
+                    dividedx += jjjjjj
+                for kkkkkk in y[n*5:n*6]:
+                    dividedy += kkkkkk
+            elif i == 6:
+                for jjjjjjj in x[n*6:n*7]:
+                    dividedx += jjjjjjj
+                for kkkkkkk in y[n*6:n*7]:
+                    dividedy += kkkkkkk
+            elif i == 7:
+                for jjjjjjjj in x[n*7:n*8]:
+                    dividedx += jjjjjjjj
+                for kkkkkkkk in y[n*7:n*8]:
+                    dividedy += kkkkkkkk
+            elif i == 8:
+                for jjjjjjjjj in x[n*8:n*9]:
+                    dividedx += jjjjjjjjj
+                for kkkkkkkkk in y[n*8:n*9]:
+                    dividedy += kkkkkkkkk
+            elif i == 9:
+                for jjjjjjjjjj in x[n*9:n*10]:
+                    dividedx += jjjjjjjjjj
+                for kkkkkkkkkk in y[n*9:n*10]:
+                    dividedy += kkkkkkkkkk
         return listex, listey
 
     @staticmethod
@@ -76,7 +126,7 @@ class GraphGen:
         x = random.sample(list(self.Nb100), 100)
         w = sorted(zip(x, y), key=operator.itemgetter(0))
         x, y = list(zip(*w))
-        return list(x), list(y)
+        return x, y
 
     def linear(self):
         listeLinear = [0] * 2
@@ -185,7 +235,8 @@ class GraphGen:
         x = random.sample(list(self.Nb100), 100)
         y = [0] * 100
         for l in range(100):
-            y[l] += a * math.sqrt(b * x[l])
+            mats = math.sqrt(b * x[l])
+            y[l] += a * mats
         w = sorted(zip(x, y), key=operator.itemgetter(0))
         x, y = zip(*w)
         return x, y
