@@ -19,10 +19,14 @@ class TestGraphGen(TestCase):
 
     def test_constant(self):
         a, b = self.generator.constant()
-        print(a, b)
         nb = 0
-        self.assertEqual()
         for x, i in enumerate(b):
+            if b[0] == i:
+                nb += 1
+            else:
+                pass
+        self.assertEqual(100, nb)
+
 
     def test_linear(self):
         self.fail()
