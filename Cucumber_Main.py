@@ -5,7 +5,7 @@ import operator
 from lorem_text import lorem
 import math
 
-
+#bruh
 class GraphGen:
     def __init__(self, *args, **kwargs):
         super(GraphGen, self).__init__(*args, **kwargs)
