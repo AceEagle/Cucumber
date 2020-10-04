@@ -67,7 +67,7 @@ class GraphGen:
             for j in x[i * n:(i + 1) * n]:
                 dividedx += j
             for k in y[i * n:(i + 1) * n]:
-                dividedy += k
+                dividedy.append(k)
         return listex, listey
 
     @staticmethod
@@ -214,7 +214,7 @@ class GraphGen:
         x = random.sample(list(self.Nb100), 100)
         y = [0] * 100
         for l in range(100):
-            y[l] += a * (c ^ (b * x[l]))
+            y[l] += a * (c ** (b * x[l]))
         w = sorted(zip(x, y), key=operator.itemgetter(0))
         x, y = zip(*w)
         return x, y
