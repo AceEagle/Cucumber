@@ -4,7 +4,7 @@ from matplotlib import pyplot as plt
 import operator
 from lorem_text import lorem
 import math
-
+#testtest
 #bruh
 class GraphGen:
     def __init__(self, *args, **kwargs):
